@@ -290,7 +290,7 @@ std::string AddrinfoToIpStr(const struct addrinfo* addrinfo_ptr) {
     addr_ptr = &(ipv6_addr->sin6_addr);
   }
   PERFETTO_CHECK(inet_ntop(addrinfo_ptr->ai_family, addr_ptr, ip_str_buffer,
-                           sizeof(ip_str_buffer)) != NULL);
+                           sizeof(ip_str_buffer)) != nullptr);
   return std::string(ip_str_buffer);
 }
 
@@ -336,7 +336,7 @@ std::vector<NetAddrInfo> GetNetAddrInfo(const std::string& ip,
   PERFETTO_CHECK(getaddrinfo(ip.c_str(), port.c_str(), &hints, &serv_info) ==
                  0);
   std::vector<NetAddrInfo> res;
-  for (p = serv_info; p != NULL; p = p->ai_next) {
+  for (p = serv_info; p != nullptr; p = p->ai_next) {
     if (p->ai_family == AF_INET) {
       std::string ip_str = AddrinfoToIpStr(p);
       std::string ip_port = ip_str + ":" + port;
